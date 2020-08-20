@@ -1,6 +1,7 @@
 # lxd-manager frontend
 
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/lxd-manager/frontend/dockerimage)
+[![!lxd-manager docs](https://img.shields.io/badge/docs-lxd--manager-success)](https://lxd-manager.github.io/)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/lxd-manager/frontend/Docker%20Image%20CI)
 ![GitHub issues](https://img.shields.io/github/issues/lxd-manager/frontend)
 ![GitHub](https://img.shields.io/github/license/lxd-manager/frontend)
 
