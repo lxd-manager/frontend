@@ -1,0 +1,27 @@
+name: Docker Image CI
+
+on: [push]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      - name: Install node dependencies
+        run: npm install
+      - name: Build static frontend
+        run: npm run build
+
+      - name: Login to DockerHub Registry
+        run: docker login -u ${{ secrets.DOCKER_USER }} -p ${{ secrets.DOCKER_TOKEN }}
+      - name: Build the tagged Docker image
+        run: docker build . --file Dockerfile --tag lxdmanager/frontend:latest
+      - name: Push the tagged Docker image
+        run: docker push lxdmanager/frontend:latest

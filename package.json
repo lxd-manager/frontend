@@ -1,0 +1,102 @@
+{
+  "name": "lxd-manager-frontend",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Frontend application for the lxd-manager backend",
+  "repository": "github:lxd-manager/frontend",
+  "author": "ech0 <mail@ech0.de> (https://ech0.de)",
+  "contributors": [
+    "ech0 <mail@ech0.de> (https://ech0.de)",
+    "Felix Engelmann <fe-github@nlogn.org> (https://nlogn.org)"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@mdi/font": "^4.9.95",
+    "axios": "^0.19.2",
+    "marked": "^1.1.1",
+    "vue": "^2.6.11",
+    "vue-router": "^3.4.3",
+    "vuetify": "^2.3.9"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^4.5.4",
+    "@vue/cli-plugin-eslint": "^4.5.4",
+    "@vue/cli-service": "^4.5.4",
+    "@vue/eslint-config-airbnb": "^4.0.1",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "lint-staged": "^9.5.0",
+    "node-http-proxy-json": "^0.1.9",
+    "sass": "^1.26.10",
+    "sass-loader": "^8.0.2",
+    "vue-cli-plugin-vuetify": "^1.1.2",
+    "vue-template-compiler": "^2.6.11",
+    "vuetify-loader": "^1.6.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "@vue/airbnb"
+    ],
+    "rules": {
+      "no-param-reassign": 0,
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "max-len": [
+        2,
+        {
+          "code": 150
+        }
+      ]
+    },
+    "parserOptions": {
+      "parser": "babel-eslint"
+    },
+    "settings": {
+      "import/resolver": {
+        "node": {
+          "extensions": [
+            ".js",
+            ".jsx",
+            ".vue"
+          ]
+        }
+      }
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ],
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.js": [
+      "vue-cli-service lint",
+      "git add"
+    ],
+    "*.vue": [
+      "vue-cli-service lint",
+      "git add"
+    ]
+  }
+}
