@@ -3,7 +3,7 @@
 
     <v-card outlined class="mb-5">
       <v-card-actions class="mb-3 pl-5 pr-5">
-        <v-text-field v-model="filter" prepend-icon="mdi-filter-outline" label="Filter container list" single-line hide-details />
+        <v-text-field v-model="filter" prepend-icon="mdi-filter-outline" label="Filter container list" single-line hide-details @change="persistFilter" />
       </v-card-actions>
     </v-card>
 
@@ -60,6 +60,7 @@ export default {
   },
 
   async mounted() {
+    this.filter = localStorage.getItem('lxd-filter');
     await this.reloadData();
     if (this.$route.params.id) {
       this.showDetails(parseInt(this.$route.params.id, 10));
@@ -139,6 +140,10 @@ export default {
 
         this.$refs.detailDialog.open(container);
       }
+    },
+
+    persistFilter() {
+        localStorage.setItem('lxd-filter', this.filter);
     }
   }
 };
