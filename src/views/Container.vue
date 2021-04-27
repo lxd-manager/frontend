@@ -3,7 +3,7 @@
 
     <v-card outlined class="mb-5">
       <v-card-actions class="mb-3 pl-5 pr-5">
-        <v-text-field v-model="filter" prepend-icon="mdi-filter-outline" label="Filter container list" single-line hide-details @change="persistFilter" />
+        <v-text-field v-model="filter" prepend-icon="mdi-filter-outline" label="Filter container list" single-line hide-details @change="persist" />
       </v-card-actions>
     </v-card>
 
@@ -142,8 +142,8 @@ export default {
       }
     },
 
-    persistFilter() {
-        localStorage.setItem('lxd-filter', this.filter);
+    persist() {
+      localStorage.setItem('lxd-filter', this.filter);
     }
   }
 };
