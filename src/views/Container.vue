@@ -92,7 +92,12 @@ export default {
       }
 
       this.container = (await axios.get('/api/container/')).data.map((row) => {
-        row.status = row.status ? JSON.parse(row.state).status : '';
+        try {
+          row.status = JSON.parse(row.state)?.status || '';
+        } catch {
+          row.status = '';
+        }
+
         try {
           row.config = row.config ? JSON.parse(row.config) : {};
           row.image = row.config['image.description'];
