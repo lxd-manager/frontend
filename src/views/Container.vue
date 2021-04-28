@@ -92,9 +92,15 @@ export default {
       }
 
       this.container = (await axios.get('/api/container/')).data.map((row) => {
-        row.status = JSON.parse(row.state).status;
-        row.config = JSON.parse(row.config);
-        row.image = row.config['image.description'];
+        row.status = row.status ? JSON.parse(row.state).status : '';
+        try {
+            row.config = row.config ? JSON.parse(row.config) : {};
+            row.image = row.config['image.description'];
+        } catch {
+            row.config = {};
+            row.image = '';
+        }
+
         return row;
       }).sort((a, b) => a.name.localeCompare(b.name));
 
