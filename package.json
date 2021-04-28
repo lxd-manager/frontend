@@ -1,6 +1,6 @@
 {
   "name": "lxd-manager-frontend",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "description": "Frontend application for the lxd-manager backend",
   "repository": "github:lxd-manager/frontend",
