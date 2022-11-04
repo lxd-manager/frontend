@@ -21,7 +21,7 @@
     "marked": "^4.0.10",
     "vue": "^2.6.11",
     "vue-router": "^3.4.3",
-    "vuetify": "^2.3.9"
+    "vuetify": "^2.6.10"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.4",
