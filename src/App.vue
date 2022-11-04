@@ -187,8 +187,7 @@ export default {
 
     this.darkModeEnabled = this.$root.$data.session.isDarkModeEnabled();
     this.$vuetify.theme.dark = this.darkModeEnabled;
-    const rootStyles = window.getComputedStyle(this.$refs.app.$el);
-    document.body.style.backgroundColor = rootStyles.backgroundColor;
+    document.body.style.backgroundColor = this.darkModeEnabled ? '#121212' : 'white';
 
     this.$router.afterEach((to) => this.setTitle(to.name));
     this.setTitle(this.$router.currentRoute.name);
@@ -217,8 +216,7 @@ export default {
     toggleDarkMode() {
       this.darkModeEnabled = this.$root.$data.session.toggleDarkMode();
       this.$vuetify.theme.dark = this.darkModeEnabled;
-      const rootStyles = window.getComputedStyle(this.$refs.app.$el);
-      document.body.style.backgroundColor = rootStyles.backgroundColor;
+      document.body.style.backgroundColor = this.darkModeEnabled ? '#121212' : 'white';
     }
   }
 };
