@@ -2,25 +2,25 @@
   <v-container fluid>
     <v-skeleton-loader ref="skeleton" type="table" class="mx-auto" v-show="loading" />
     <v-data-table
-            :headers="headers"
-            :items="projects"
-            v-show="!loading"
-            hide-default-footer
-            disable-pagination
-            show-select
-            single-select
-            class="elevation-1">
-      <template v-slot:item.data-table-select="{ item }">
+      :headers="headers"
+      :items="projects"
+      v-show="!loading"
+      hide-default-footer
+      disable-pagination
+      show-select
+      single-select
+      class="elevation-1">
+      <template v-slot:[`item.data-table-select`]="{ item }">
         <v-btn text icon color="green" @click.native="showDetails(item.id)">
           <v-icon>mdi-settings</v-icon>
         </v-btn>
       </template>
-      <template v-slot:item.users="{ item }">
+      <template v-slot:[`item.users`]="{ item }">
         <v-chip small v-for="user in item.users" :key="user.username" class="mr-1">
           {{ user.username }}
         </v-chip>
       </template>
-      <template v-slot:item.containers="{ item }">
+      <template v-slot:[`item.containers`]="{ item }">
         <container-status :state="container.state" v-for="container in item.containers" :key="container.name" class="mr-1">
           {{ container.name }}
         </container-status>
@@ -78,7 +78,7 @@ export default {
     },
 
     async createProject(config) {
-      const usersUrl = config.users.map(x => x.url);
+      const usersUrl = config.users.map((x) => x.url);
       await axios.post('/api/project/', {
         name: config.name,
         users: usersUrl
@@ -87,7 +87,7 @@ export default {
     },
 
     showDetails(projectId) {
-      const project = this.projects.find(c => c.id === projectId);
+      const project = this.projects.find((c) => c.id === projectId);
       if (project) {
         const route = `/projects/${projectId}`;
         if (this.$router.currentRoute.path !== route) {

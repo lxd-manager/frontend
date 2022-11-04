@@ -7,7 +7,7 @@ import vuetify from './plugins/vuetify';
 
 axios.defaults.xsrfCookieName = 'csrftoken';
 axios.defaults.xsrfHeaderName = 'X-CSRFTOKEN';
-axios.interceptors.response.use(r => r, (error) => {
+axios.interceptors.response.use((r) => r, (error) => {
   if (error.response.status === 403) {
     if (error.response.data.detail === 'Authentication credentials were not provided.') {
       if (router.currentRoute.path !== '/login') {
@@ -78,6 +78,6 @@ Vue.config.productionTip = false;
 new Vue({
   vuetify,
   router,
-  render: h => h(App),
+  render: (h) => h(App),
   data: { session: new Session() }
 }).$mount('#app');

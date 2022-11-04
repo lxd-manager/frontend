@@ -1,6 +1,6 @@
 {
   "name": "lxd-manager-frontend",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "private": true,
   "description": "Frontend application for the lxd-manager backend",
   "repository": "github:lxd-manager/frontend",
@@ -19,25 +19,24 @@
     "@mdi/font": "^4.9.95",
     "axios": "^0.21.1",
     "marked": "^4.0.10",
-    "vue": "^2.6.11",
-    "vue-router": "^3.4.3",
-    "vuetify": "^2.3.9"
+    "vue": "^2.6.14",
+    "vue-router": "^3.4.9",
+    "vuetify": "^2.6.6"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.5.4",
-    "@vue/cli-plugin-eslint": "^4.5.4",
-    "@vue/cli-service": "^4.5.12",
-    "@vue/eslint-config-airbnb": "^4.0.1",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-plugin-vue": "^5.2.3",
-    "lint-staged": "^9.5.0",
+    "@babel/core": "^7.18.5",
+    "@babel/eslint-parser": "^7.18.2",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@vue/eslint-config-airbnb": "^7.0.0",
+    "lint-staged": "^10.5.3",
     "node-http-proxy-json": "^0.1.9",
-    "sass": "^1.26.10",
+    "sass": "<1.33.0",
     "sass-loader": "^8.0.2",
-    "vue-cli-plugin-vuetify": "^1.1.2",
-    "vue-template-compiler": "^2.6.11",
-    "vuetify-loader": "^1.6.0"
+    "vue-cli-plugin-vuetify": "~2.4.5",
+    "vue-template-compiler": "^2.6.14",
+    "vuetify-loader": "^1.7.2"
   },
   "eslintConfig": {
     "root": true,
@@ -46,14 +45,18 @@
     },
     "extends": [
       "plugin:vue/essential",
-      "@vue/airbnb"
+      "@vue/eslint-config-airbnb"
     ],
     "rules": {
       "no-param-reassign": 0,
+      "vue/multi-word-component-names": 0,
       "comma-dangle": [
         "error",
         "never"
       ],
+      "vue/max-len": [ 2, {
+          "code": 150
+      }],
       "max-len": [
         2,
         {
@@ -62,7 +65,7 @@
       ]
     },
     "parserOptions": {
-      "parser": "babel-eslint"
+      "parser": "@babel/eslint-parser"
     },
     "settings": {
       "import/resolver": {

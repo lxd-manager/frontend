@@ -9,29 +9,29 @@
 
     <v-skeleton-loader ref="skeleton" type="table" class="mx-auto" v-show="loading" />
     <v-data-table
-            :headers="headers"
-            :items="container"
-            v-show="!loading"
-            :search="filter"
-            hide-default-footer
-            disable-pagination
-            show-select
-            single-select
-            class="elevation-1">
-      <template v-slot:item.data-table-select="{ item }">
+      :headers="headers"
+      :items="container"
+      v-show="!loading"
+      :search="filter"
+      hide-default-footer
+      disable-pagination
+      show-select
+      single-select
+      class="elevation-1">
+      <template v-slot:[`item.data-table-select`]="{ item }">
         <v-btn text icon color="green" @click.native="showDetails(item.id)">
           <v-icon>mdi-settings</v-icon>
         </v-btn>
       </template>
-      <template v-slot:item.ips="{ item }">
+      <template v-slot:[`item.ips`]="{ item }">
         <ip-status :ip="ip" v-for="ip in item.ips" :key="ip.ip" class="mr-1" />
       </template>
-      <template v-slot:item.nesting_enabled="{ item }">
+      <template v-slot:[`item.nesting_enabled`]="{ item }">
         <v-btn text icon v-if="item.nesting_enabled === 'true'">
           <v-icon>mdi-check</v-icon>
         </v-btn>
       </template>
-      <template v-slot:item.status="{ item }">
+      <template v-slot:[`item.status`]="{ item }">
         <container-status :state="item.state" />
       </template>
     </v-data-table>
@@ -113,7 +113,7 @@ export default {
         this.loading = false;
       }
 
-      const fastUpdate = this.container.some(c => c.target_status_code !== null);
+      const fastUpdate = this.container.some((c) => c.target_status_code !== null);
       setTimeout(this.reloadData, fastUpdate ? 7000 : 37000, false);
     },
 
@@ -142,7 +142,7 @@ export default {
     },
 
     showDetails(containerId) {
-      const container = this.container.find(c => c.id === containerId);
+      const container = this.container.find((c) => c.id === containerId);
       if (container) {
         const route = `/container/${containerId}`;
         if (this.$router.currentRoute.path !== route) {

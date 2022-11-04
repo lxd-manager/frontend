@@ -1,8 +1,19 @@
 <template>
-    <v-autocomplete v-model="model" :items="entries" ref="input" v-on:focus="load"
-                    :loading="isLoading" :search-input.sync="search" :disabled="disabled"
-                    hide-no-data :label="label" :autofocus="autofocus" :multiple="multiple"
-                    :item-text="text" return-object v-on:input="$emit('input', model)" />
+  <v-autocomplete
+    v-model="model"
+    :items="entries"
+    ref="input"
+    v-on:focus="load"
+    :loading="isLoading"
+    :search-input.sync="search"
+    :disabled="disabled"
+    hide-no-data
+    :label="label"
+    :autofocus="autofocus"
+    :multiple="multiple"
+    :item-text="text"
+    return-object
+    v-on:input="$emit('input', model)" />
 </template>
 
 <script>

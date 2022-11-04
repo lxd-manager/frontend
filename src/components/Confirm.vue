@@ -1,18 +1,18 @@
 <template>
-    <v-dialog v-model="dialog" :max-width="options.width" @keydown.esc="cancel">
-        <v-card>
-            <v-toolbar dark :color="options.color" dense text>
-                <v-toolbar-title class="white--text">{{ title }}</v-toolbar-title>
-            </v-toolbar>
-            <v-card-text v-show="!!message" style="white-space: pre-wrap;">{{ message }}</v-card-text>
-            <v-card-actions class="pt-0">
-                <v-spacer></v-spacer>
-                <v-btn v-if="!options.alert" color="primary darken-1" text="text" @click.native="agree">Yes</v-btn>
-                <v-btn v-if="!options.alert" color="grey" text="text" @click.native="cancel">Cancel</v-btn>
-                <v-btn v-if="options.alert" color="grey" text="text" @click.native="cancel">Ok</v-btn>
-            </v-card-actions>
-        </v-card>
-    </v-dialog>
+  <v-dialog v-model="dialog" :max-width="options.width" @keydown.esc="cancel">
+    <v-card>
+      <v-toolbar dark :color="options.color" dense text>
+        <v-toolbar-title class="white--text">{{ title }}</v-toolbar-title>
+      </v-toolbar>
+      <v-card-text v-show="!!message" style="white-space: pre-wrap;">{{ message }}</v-card-text>
+      <v-card-actions class="pt-0">
+        <v-spacer />
+        <v-btn v-if="!options.alert" color="primary darken-1" text="text" @click.native="agree">Yes</v-btn>
+        <v-btn v-if="!options.alert" color="grey" text="text" @click.native="cancel">Cancel</v-btn>
+        <v-btn v-if="options.alert" color="grey" text="text" @click.native="cancel">Ok</v-btn>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

@@ -1,15 +1,15 @@
 <template>
-    <v-dialog persistent max-width="500px" value="true">
-        <v-card>
-            <v-card-title>
-                <span class="headline">Login</span>
-            </v-card-title>
+  <v-dialog persistent max-width="500px" value="true">
+    <v-card>
+      <v-card-title>
+        <span class="headline">Login</span>
+      </v-card-title>
 
-            <v-card-text>
-                <v-btn block large dark color="#A32638" @click.native="gitlab">Sign in with GitLab</v-btn>
-            </v-card-text>
-        </v-card>
-    </v-dialog>
+      <v-card-text>
+        <v-btn block large dark color="#A32638" @click.native="gitlab">Sign in with GitLab</v-btn>
+      </v-card-text>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script>

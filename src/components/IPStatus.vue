@@ -1,7 +1,7 @@
 <template>
-    <v-chip :color="color" :textColor="textColor" small>
-        <slot>{{ ip.ip }}</slot>
-    </v-chip>
+  <v-chip :color="color" :textColor="textColor" small>
+    <slot>{{ ip.ip }}</slot>
+  </v-chip>
 </template>
 
 <script>

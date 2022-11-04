@@ -1,7 +1,7 @@
 <template>
-    <v-chip :color="color" :textColor="textColor" small>
-        <slot>{{ status }} ({{ code }})</slot>
-    </v-chip>
+  <v-chip :color="color" :textColor="textColor" small>
+    <slot>{{ status }} ({{ code }})</slot>
+  </v-chip>
 </template>
 
 <script>
@@ -9,7 +9,10 @@ export default {
   name: 'ContainerStatus',
 
   props: {
-    state: String
+    state: {
+      type: String,
+      default: '{}'
+    }
   },
 
   data: () => ({

@@ -1,32 +1,32 @@
 <template>
-  <v-app>
+  <v-app ref="app">
     <v-app-bar app clipped-left dark>
       <v-app-bar-nav-icon>
-          <v-avatar color="#121212" size="48">
-              <v-img src="@/assets/logo.svg" />
-          </v-avatar>
+        <v-avatar color="#121212" size="48">
+          <v-img src="@/assets/logo.svg" />
+        </v-avatar>
       </v-app-bar-nav-icon>
-      <v-toolbar-title v-text="title" />
+      <v-toolbar-title>{{ title }}</v-toolbar-title>
       <v-spacer />
 
       <v-toolbar-items>
         <v-btn text v-for="(item, i) in items" :key="i" :to="item.link" class="d-none d-md-flex">
           {{ item.title }}
-          <v-icon right v-text="item.icon" />
+          <v-icon right>{{ item.icon }}</v-icon>
         </v-btn>
 
         <v-btn icon v-for="(item, i) in items" :key="`icon-${i}`" :to="item.link" class="d-none d-sm-flex d-md-none">
-          <v-icon v-text="item.icon" />
+          <v-icon>{{ item.icon }}</v-icon>
         </v-btn>
 
         <v-divider vertical class="d-none d-sm-flex" />
 
-        <v-btn text target="_blank" :href="helpURL" v-if="helpURL" class="d-none d-md-flex">
+        <v-btn text target="_blank" :href="helpURL" v-if="helpURL" class="d-none d-md-flex" rel="noopener noreferrer">
           Help
           <v-icon right>mdi-help-circle</v-icon>
         </v-btn>
 
-        <v-btn icon target="_blank" :href="helpURL" v-if="helpURL" class="d-none d-sm-flex d-md-none">
+        <v-btn icon target="_blank" :href="helpURL" v-if="helpURL" class="d-none d-sm-flex d-md-none" rel="noopener noreferrer">
           <v-icon>mdi-help-circle</v-icon>
         </v-btn>
 
@@ -60,71 +60,71 @@
         </v-btn>
 
         <v-menu :close-on-content-click="false" :nudge-width="200" offset-y>
-            <template v-slot:activator="{ on }">
-                <v-btn icon v-on="on" class="d-flex d-sm-none">
-                    <v-icon>mdi-menu</v-icon>
-                </v-btn>
-            </template>
+          <template v-slot:activator="{ on }">
+            <v-btn icon v-on="on" class="d-flex d-sm-none">
+              <v-icon>mdi-menu</v-icon>
+            </v-btn>
+          </template>
 
-            <v-card>
-                <v-list>
-                    <v-list-item @click="toggleDarkMode">
-                        <v-list-item-icon>
-                            <v-icon v-if="$vuetify.theme.dark">mdi-brightness-4</v-icon>
-                            <v-icon v-else>mdi-brightness-7</v-icon>
-                        </v-list-item-icon>
+          <v-card>
+            <v-list>
+              <v-list-item @click="toggleDarkMode">
+                <v-list-item-icon>
+                  <v-icon v-if="$vuetify.theme.dark">mdi-brightness-4</v-icon>
+                  <v-icon v-else>mdi-brightness-7</v-icon>
+                </v-list-item-icon>
 
-                        <v-list-item-content>
-                            <v-list-item-title>Dark Mode</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Dark Mode</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
 
-                    <v-list-item @click="toggleSudo" v-if="superuser">
-                        <v-list-item-icon>
-                            <v-icon :color="sudoEnabled ? 'error' : ''">mdi-sword</v-icon>
-                        </v-list-item-icon>
+              <v-list-item @click="toggleSudo" v-if="superuser">
+                <v-list-item-icon>
+                  <v-icon :color="sudoEnabled ? 'error' : ''">mdi-sword</v-icon>
+                </v-list-item-icon>
 
-                        <v-list-item-content>
-                            <v-list-item-title>SUDO Mode</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>SUDO Mode</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
 
-                    <v-list-item @click="logout" v-if="user">
-                        <v-list-item-icon>
-                            <v-icon>mdi-exit-to-app</v-icon>
-                        </v-list-item-icon>
+              <v-list-item @click="logout" v-if="user">
+                <v-list-item-icon>
+                  <v-icon>mdi-exit-to-app</v-icon>
+                </v-list-item-icon>
 
-                        <v-list-item-content>
-                            <v-list-item-title>Logout</v-list-item-title>
-                            <v-list-item-subtitle>{{ user }}</v-list-item-subtitle>
-                        </v-list-item-content>
-                    </v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Logout</v-list-item-title>
+                  <v-list-item-subtitle>{{ user }}</v-list-item-subtitle>
+                </v-list-item-content>
+              </v-list-item>
 
-                    <v-divider />
+              <v-divider />
 
-                    <v-list-item :href="helpURL" target="_blank" v-if="helpURL">
-                        <v-list-item-icon>
-                            <v-icon>mdi-help-circle</v-icon>
-                        </v-list-item-icon>
+              <v-list-item :href="helpURL" target="_blank" v-if="helpURL" rel="noopener noreferrer">
+                <v-list-item-icon>
+                  <v-icon>mdi-help-circle</v-icon>
+                </v-list-item-icon>
 
-                        <v-list-item-content>
-                            <v-list-item-title>Help</v-list-item-title>
-                        </v-list-item-content>
-                    </v-list-item>
+                <v-list-item-content>
+                  <v-list-item-title>Help</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
 
-                    <v-divider v-if="helpURL" />
+              <v-divider v-if="helpURL" />
 
-                    <v-list-item v-for="(item, i) in items" link :to="item.link" :key="i">
-                        <v-list-item-icon>
-                            <v-icon v-text="item.icon" />
-                        </v-list-item-icon>
+              <v-list-item v-for="(item, i) in items" link :to="item.link" :key="i">
+                <v-list-item-icon>
+                  <v-icon>{{ item.icon }}</v-icon>
+                </v-list-item-icon>
 
-                        <v-list-item-content>
-                            <v-list-item-title v-text="item.title" />
-                        </v-list-item-content>
-                    </v-list-item>
-                </v-list>
-            </v-card>
+                <v-list-item-content>
+                  <v-list-item-title>{{ item.title }}</v-list-item-title>
+                </v-list-item-content>
+              </v-list-item>
+            </v-list>
+          </v-card>
         </v-menu>
 
       </v-toolbar-items>
@@ -177,7 +177,7 @@ export default {
         const res = await axios.get('/api/user/me/');
         this.$root.$data.session.setSession(res.data);
       } catch {
-        // ignore
+        await this.logout();
       }
     }
 
@@ -187,15 +187,21 @@ export default {
 
     this.darkModeEnabled = this.$root.$data.session.isDarkModeEnabled();
     this.$vuetify.theme.dark = this.darkModeEnabled;
+    const rootStyles = window.getComputedStyle(this.$refs.app.$el);
+    document.body.style.backgroundColor = rootStyles.backgroundColor;
 
-    this.$router.afterEach(to => this.setTitle(to.name));
+    this.$router.afterEach((to) => this.setTitle(to.name));
     this.setTitle(this.$router.currentRoute.name);
   },
 
   methods: {
     async logout() {
       this.$root.$data.session.clearSession();
-      await axios.get('/api-auth/logout/');
+      try {
+        await axios.get('/api-auth/logout/');
+      } catch {
+        // ignore
+      }
       await this.$router.push('/login');
     },
 
@@ -211,6 +217,8 @@ export default {
     toggleDarkMode() {
       this.darkModeEnabled = this.$root.$data.session.toggleDarkMode();
       this.$vuetify.theme.dark = this.darkModeEnabled;
+      const rootStyles = window.getComputedStyle(this.$refs.app.$el);
+      document.body.style.backgroundColor = rootStyles.backgroundColor;
     }
   }
 };
